@@ -2,24 +2,24 @@
 
 ## usersテーブル
 
-| Column              | Type           | Options          |
-| ------------------- | ---------------| ---------------- |
-| nickname            | string         | null: false      |
-| email               | string         | null: false      |
-| password            | string         | null: false      |
-| first_name          | string         | null: false      |
-| last_name           | string         | null: false      |
-| first_name_kana     | string         | null: false      |
-| last_name_kana      | string         | null: false      |
-| birth_day_yy        | integer        | null: false      |
-| birth_day_mm        | integer        | null: false      |
-| birth_day_dd        | integer        | null: false      |
+| Column              | Type           | Options                       |
+| ------------------- | ---------------| ----------------------------- |
+| nickname            | string         | null: false, unique: true     |
+| email               | string         | null: false, unique: true     |
+| password            | string         | null: false                   |
+| first_name          | string         | null: false                   |
+| last_name           | string         | null: false                   |
+| first_name_kana     | string         | null: false                   |
+| last_name_kana      | string         | null: false                   |
+| birth_day_yy        | integer        | null: false                   |
+| birth_day_mm        | integer        | null: false                   |
+| birth_day_dd        | integer        | null: false                   |
 
 
 ### Association
 - has_many :items
+- has_many :purchases
 - has_many :comments
-- has_one :address
 
 
 ## itemsテーブル
@@ -39,8 +39,38 @@
 
 ### Association
 - belongs_to :user
-- has_many :comment
+- has_one :address
+- has_many :comments
 
+
+
+## buyersテーブル
+
+| Column          | Type         | Options                         |
+| --------------- | ------------ | ------------------------------- |
+| buyer_id        | integer      | null: false
+| user_id         | references   | null: false, foreign_key: true  |
+| item_id         | references   | null: false, foreign_key: true  |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
+
+
+## addressテーブル
+
+| Column          | Type         | Options                         |
+| --------------- | ------------ | ------------------------------- |
+| post_id         | integer      | null: false                     |
+| prefecture      | string       | null: false                     |
+| municipality    | text         | null: false                     |
+| address         | string       | null: false                     |
+| building        | string       | null: false                     |
+| phone           | integer      | null: false                     |
+
+### Association
+- belongs_to :purchase
 
 
 ## commentsテーブル
@@ -55,37 +85,3 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-
-
-
-## creditsテーブル
-
-| Column              | Type        | Options                |
-| ------------------- | ----------- | ---------------------- |
-| card_num            | integer     | null: false            |
-| card_exp_mm         | integer     | null: false            |
-| card_exp_yy         | integer     | null: false            |
-| security_code       | integer     | null: false            |
-
-
-### Association
-- belongs_to :address
-- belongs_to :user
-
-
-
-## addressesテーブル
-
-| Column          | Type         | Options                 |
-| --------------- | ------------ | ----------------------- |
-| post_id         | integer      | null: false             |
-| prefecture      | string       | null: false             |
-| municipality    | text         | null: false             |
-| address         | string       | null: false             |
-| building        | string       | null: false             |
-| phone           | integer      | null: false             |
-
-
-### Association
-- has_one :credit
-- belongs_to :user
