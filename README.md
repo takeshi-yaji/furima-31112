@@ -16,7 +16,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchases
+- has_many :buyers
 - has_many :comments
 
 
@@ -31,7 +31,7 @@
 | charges_id          | integer           | null: false                          |
 | area_id             | integer           | null: false                          |
 | price               | integer           | null: false                          |
-| days_id             | integer           | null: false                          |
+| day_id              | integer           | null: false                          |
 | user                | references        | null: false, foreign_key: true       |
 
 
