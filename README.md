@@ -4,7 +4,7 @@
 
 | Column              | Type                 | Options                       |
 | ------------------- | -------------------- | ----------------------------- |
-| nickname            | string               | null: false, unique: true     |
+| nickname            | string               | null: false,                  |
 | email               | string               | null: false, unique: true     |
 | encrypted_password  | string               | null: false                   |
 | first_name          | string               | null: false                   |
@@ -60,7 +60,7 @@
 | --------------- | ------------ | ------------------------------- |
 | post            | string       | null: false                     |
 | prefecture_id   | integer      | null: false                     |
-| municipality    | text         | null: false                     |
+| municipality    | string       | null: false                     |
 | address         | string       | null: false                     |
 | building        | string       |                                 |
 | phone           | string       | null: false                     |
