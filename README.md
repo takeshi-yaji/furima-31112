@@ -30,16 +30,15 @@
 | status_id           | integer           | null: false                          |
 | charges_id          | integer           | null: false                          |
 | area_id             | integer           | null: false                          |
-| price_id            | integer           | null: false                          |
+| price               | integer           | null: false                          |
 | days_id             | integer           | null: false                          |
 | user                | references        | null: false, foreign_key: true       |
 
 
 ### Association
 - belongs_to :user
-- has_one :address
+- has_one :buyer
 - has_many :comments
-
 
 
 ## buyersテーブル
@@ -59,15 +58,16 @@
 
 | Column          | Type         | Options                         |
 | --------------- | ------------ | ------------------------------- |
-| post_id         | integer      | null: false                     |
+| post            | string       | null: false                     |
 | prefecture_id   | integer      | null: false                     |
 | municipality    | text         | null: false                     |
 | address         | string       | null: false                     |
 | building        | string       |                                 |
-| phone           | integer      | null: false                     |
+| phone           | string       | null: false                     |
+| buyer           | references   | null: false, foreign_key: true  |
 
 ### Association
-- belongs_to :purchase
+- belongs_to :buyer
 
 
 ## commentsテーブル
