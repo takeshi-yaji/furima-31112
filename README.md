@@ -2,18 +2,16 @@
 
 ## usersテーブル
 
-| Column              | Type           | Options                       |
-| ------------------- | ---------------| ----------------------------- |
-| nickname            | string         | null: false, unique: true     |
-| email               | string         | null: false, unique: true     |
-| password            | string         | null: false                   |
-| first_name          | string         | null: false                   |
-| last_name           | string         | null: false                   |
-| first_name_kana     | string         | null: false                   |
-| last_name_kana      | string         | null: false                   |
-| birth_day_yy        | integer        | null: false                   |
-| birth_day_mm        | integer        | null: false                   |
-| birth_day_dd        | integer        | null: false                   |
+| Column              | Type                 | Options                       |
+| ------------------- | -------------------- | ----------------------------- |
+| nickname            | string               | null: false, unique: true     |
+| email               | string               | null: false, unique: true     |
+| encrypted_password  | string               | null: false                   |
+| first_name          | string               | null: false                   |
+| last_name           | string               | null: false                   |
+| first_name_kana     | string               | null: false                   |
+| last_name_kana      | string               | null: false                   |
+| birthday            | date_select          | null: false                   |
 
 
 ### Association
@@ -28,13 +26,13 @@
 | ------------------- | ----------------- | ------------------------------------ |
 | name                | text              | null: false                          |
 | content             | text              | null: false                          |
-| category            | string            | null: false                          |
-| status              | string            | null: false                          |
+| category            | integer           | null: false                          |
+| status              | integer           | null: false                          |
 | charges             | integer           | null: false                          |
-| area                | string            | null: false                          |
+| area                | integer           | null: false                          |
 | price               | integer           | null: false                          |
-| days                | string            | null: false                          |
-| users_id            | references        | null: false, foreign_key: true       |
+| days                | integer           | null: false                          |
+| user                | references        | null: false, foreign_key: true       |
 
 
 ### Association
@@ -48,9 +46,9 @@
 
 | Column          | Type         | Options                         |
 | --------------- | ------------ | ------------------------------- |
-| buyer_id        | integer      | null: false
-| user_id         | references   | null: false, foreign_key: true  |
-| item_id         | references   | null: false, foreign_key: true  |
+| buyer_id        | integer      | null: false                     |
+| user            | references   | null: false, foreign_key: true  |
+| item            | references   | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
@@ -63,10 +61,10 @@
 | Column          | Type         | Options                         |
 | --------------- | ------------ | ------------------------------- |
 | post_id         | integer      | null: false                     |
-| prefecture      | string       | null: false                     |
+| prefecture      | integer      | null: false                     |
 | municipality    | text         | null: false                     |
 | address         | string       | null: false                     |
-| building        | string       | null: false                     |
+| building        | string       |                                 |
 | phone           | integer      | null: false                     |
 
 ### Association
@@ -78,8 +76,8 @@
 | Column       | Type          | Options                          | 
 | ------------ | ------------- | -------------------------------- |
 | text         | text          | null: false                      | 
-| user_id      | references    | null: false, foreign_key: true   |
-| item_id      | references    | null: false, foreign_key: true   |
+| user         | references    | null: false, foreign_key: true   |
+| item         | references    | null: false, foreign_key: true   |
 
 
 ### Association
