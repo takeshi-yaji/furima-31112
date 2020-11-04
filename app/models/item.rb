@@ -1,10 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :genre
-
-  validates :title, :text, presence: true
-  validates :genre_id, numericality: { other_than: 1 }
-  
   belongs_to :user
   has_one :buyer
   has_one_attached :image
@@ -20,4 +16,15 @@ class Item < ApplicationRecord
   validates :day_id
   validates :image
   end
+
+  with_options numericality: { other_than: 1 } do
+  validates :category_id
+  validates :status_id
+  validates :charges_id
+  validates :prefecture_id
+  validates :day_id
+  end
+  
+  validates  :price, numericality: { only_integer: true,
+    greater_than: 300, less_than: 10000000}
 end
