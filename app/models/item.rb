@@ -1,5 +1,10 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :genre
 
+  validates :title, :text, presence: true
+  validates :genre_id, numericality: { other_than: 1 }
+  
   belongs_to :user
   has_one :buyer
   has_one_attached :image
@@ -13,5 +18,6 @@ class Item < ApplicationRecord
   validates :prefecture_id
   validates :price
   validates :day_id
+  validates :image
   end
 end
