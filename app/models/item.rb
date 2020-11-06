@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :genre
+  belongs_to :prefecture
   belongs_to :category
   belongs_to :status
   belongs_to :charge
@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   validates :content
   validates :category_id
   validates :status_id
-  validates :charges_id
+  validates :charge_id
   validates :prefecture_id
   validates :price
   validates :day_id
@@ -24,7 +24,7 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1 } do
   validates :category_id
   validates :status_id
-  validates :charges_id
+  validates :charge_id
   validates :prefecture_id
   validates :day_id
   end
