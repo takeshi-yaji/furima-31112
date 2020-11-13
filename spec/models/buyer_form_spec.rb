@@ -46,19 +46,19 @@ RSpec.describe BuyerForm, type: :model do
       expect(@buyer_form.errors.full_messages).to include("Phone can't be blank", 'Phone is invalid')
     end
 
-    it 'postの記述が間違えていると保存ができないこと' do
+    it 'postのハイフンが無いと保存ができないこと' do
       @buyer_form.post = '0000000'
       @buyer_form.valid?
       expect(@buyer_form.errors.full_messages).to include('Post is invalid')
     end
 
-    it 'phoneの記述が間違えていると保存ができないこと' do
+    it 'phoneのハイフンがあると保存ができないこと' do
       @buyer_form.phone = '090-1234-5678'
       @buyer_form.valid?
       expect(@buyer_form.errors.full_messages).to include('Phone is invalid')
     end
 
-    it 'prefecture_idが間違えていると保存ができないこと' do
+    it 'prefecture_idが１だと保存ができないこと' do
       @buyer_form.prefecture_id = 1
       @buyer_form.valid?
       expect(@buyer_form.errors.full_messages).to include('Prefecture must be other than 1')

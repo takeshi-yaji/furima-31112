@@ -1,7 +1,7 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_index, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
 
   def index
     @buyer_form = BuyerForm.new
@@ -38,6 +38,6 @@ class BuyersController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path  current_user.id == @item.user.id
+    redirect_to root_path  current_user.id == @item.user.id && @item.buyer != nil
   end
 end
