@@ -29,7 +29,6 @@ const pay = () => {
        
        document.getElementById("charge-form").submit();
       });
-      console.log("token");
   });
 };
 
