@@ -64,5 +64,6 @@ RSpec.describe BuyerForm, type: :model do
       expect(@buyer_form.errors.full_messages).to include("Prefecture must be other than 1")
     end
 
+    
   end
 end
