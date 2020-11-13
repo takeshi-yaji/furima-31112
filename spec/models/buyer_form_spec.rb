@@ -10,6 +10,11 @@ RSpec.describe BuyerForm, type: :model do
       expect(@buyer_form).to be_valid
     end
 
+    it '建物名が空でも保存ができること' do
+      @buyer_form.building = nil
+      expect(@buyer_form).to be_valid
+    end
+
     it 'tokenが空では保存ができないこと' do
       @buyer_form.token = nil
       @buyer_form.valid?
