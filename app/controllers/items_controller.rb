@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -23,9 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user.id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user.id
   end
 
   def update
@@ -37,14 +35,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if current_user.id == @item.user_id 
-      @item.destroy
-    end
-      redirect_to action: :index
+    @item.destroy if current_user.id == @item.user_id
+    redirect_to action: :index
   end
 
   private
-  
+
   def item_params
     params.require(:item).permit(:name, :content, :category_id, :status_id, :charge_id, :prefecture_id, :price, :day_id, :image).merge(user_id: current_user.id)
   end
